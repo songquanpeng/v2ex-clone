@@ -1,0 +1,12 @@
+<div class="comment-editor">
+    <form method="post" action="/api/comment/" style="margin: 0">
+        <div class="cell">
+            Add a New Comment
+        </div>
+        <div class="cell">
+            <input type="text" name="page_id" style="display: none" value="<%= page.id %>">
+            <textarea name="content" rows="6" required></textarea>
+            <input type="submit" class="button" value="Reply">
+        </div>
+    </form>
+</div>

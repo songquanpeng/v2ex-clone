@@ -39,7 +39,7 @@ function getDate(format) {
 }
 
 function md2html(markdown) {
-  return parser(lexer(markdown));
+  return sanitizeHtml(parser(lexer(markdown)));
 }
 
 function updateConfig(config) {
@@ -53,41 +53,6 @@ function updateConfig(config) {
       console.error('Unable to load config from database: ', message);
     }
   });
-}
-
-function convertContent(pageType, content) {
-  let lines = content.split('\n');
-  let deleteCount = 0;
-  for (let i = 1; i < lines.length; ++i) {
-    let line = lines[i];
-    if (line.startsWith('---')) {
-      deleteCount = i + 1;
-      break;
-    }
-  }
-  lines.splice(0, deleteCount);
-
-  if (pageType === PAGE_TYPE.ARTICLE || pageType === PAGE_TYPE.DISCUSS) {
-    return md2html(lines.join('\n'));
-  } else if (pageType === PAGE_TYPE.LINKS) {
-    let linkList = [];
-    let linkCount = -1;
-    for (let i = 0; i < lines.length; ++i) {
-      let line = lines[i].split(':');
-      let key = line[0].trim();
-      if (!['title', 'link', 'image', 'description'].includes(key)) continue;
-      let value = line.splice(1).join(':').trim();
-      if (key === 'title') {
-        linkList.push({ title: 'No title', image: '', link: '/', description: 'No description' });
-        linkCount++;
-      } else {
-        if (linkCount < 0) continue;
-      }
-      linkList[linkCount][key] = value;
-    }
-    return JSON.stringify(linkList);
-  }
-  return '';
 }
 
 function normalizePort(val) {
@@ -106,6 +71,5 @@ module.exports = {
   getDate,
   md2html,
   updateConfig,
-  convertContent,
   normalizePort
 };

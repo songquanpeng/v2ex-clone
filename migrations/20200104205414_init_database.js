@@ -37,7 +37,11 @@ exports.up = function(knex, Promise) {
     })
     .createTable('comments', function(table) {
       table.uuid('id').primary();
-      table.string('author').notNullable();
+      table
+        .uuid('user_id')
+        .references('id')
+        .inTable('users')
+        .notNullable();
       table.integer('status');
       table
         .uuid('page_id')
@@ -45,14 +49,9 @@ exports.up = function(knex, Promise) {
         .inTable('pages')
         .notNullable();
       table.text('post_time').notNullable();
-      table.string('title').notNullable();
       table.text('content').notNullable();
       table.integer('up_vote').defaultTo(0);
       table.integer('down_vote').defaultTo(0);
-      table.string('ip');
-      table.string('agent');
-      table.string('url');
-      table.string('email');
     })
     .createTable('options', function(table) {
       table.string('name').primary();

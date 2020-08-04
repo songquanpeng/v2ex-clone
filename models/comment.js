@@ -18,6 +18,17 @@ class Comment {
 
   getByPageId(id, callback) {
     db('comments')
+      .select([
+        'comments.id as id',
+        'page_id',
+        'users.id as user_id',
+        'users.username as username',
+        'users.avatar as user_avatar',
+        'post_time',
+        'comments.status as status',
+        'content'
+      ])
+      .innerJoin('users', 'users.id', 'comments.user_id')
       .where('page_id', id)
       .asCallback((error, data) => {
         if (error) {

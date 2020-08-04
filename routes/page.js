@@ -5,7 +5,7 @@ const Page = require('../models/page').Page;
 const checkLogin = require('../middlewares/check').checkLogin;
 const checkPermission = require('../middlewares/check').checkPermission;
 const getDate = require('../utils/util').getDate;
-const convertContent = require('../utils/util').convertContent;
+const md2html = require('../utils/util').md2html;
 const Stream = require('stream');
 
 router.post('/search', checkPermission, function(req, res, next) {
@@ -51,7 +51,7 @@ router.post('/', checkLogin, (req, res, next) => {
     up_vote,
     down_vote
   };
-  page.converted_content = convertContent(page.type, page.content);
+  page.converted_content = md2html(page.content);
   Page.add(page, (status, message, id) => {
     req.flash('message', message);
     if (status) {
@@ -92,7 +92,7 @@ router.put('/', checkLogin, (req, res, next) => {
     description
   };
   if (page.content) {
-    page.converted_content = convertContent(page.type, page.content);
+    page.converted_content = md2html(page.content);
   } else {
     delete page.content;
   }

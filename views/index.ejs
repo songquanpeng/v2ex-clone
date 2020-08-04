@@ -3,52 +3,54 @@
 
 <div class="main">
     <div class="wrapper">
-        <div class="main-content">
-            <div class="main-tabs">
-                <a href="" class="tab focus">技术</a>
-                <a href="" class="tab">创意</a>
-                <a href="" class="tab">好玩</a>
-                <a href="" class="tab">交易</a>
-                <a href="" class="tab">问与答</a>
-                <a href="" class="tab">最热</a>
-                <a href="" class="tab">全部</a>
-                <a href="" class="tab">关注</a>
-            </div>
-            <div class="secondary-tabs">
-                <a href="">C++</a>
-                <a href="">Java</a>
-                <a href="">Python</a>
-                <a href="">JavaScript</a>
-                <a href="">Go</a>
-            </div>
-            <% if(message.length) {%>
-            <div class="message">
-                <%= message %>
-            </div>
-            <% }%>
-            <% if (pages.length){ %>
-                <% pages.forEach((page)=>{ %>
-                    <div class="item">
-                        <img src="<%= page.user_avatar !== '' ? page.user_avatar : '/static/default_avatar.png' %>" class="avatar" alt="">
-                        <div class="item-content">
-                            <a href="/t/<%= page.id %>" class="title"><%= page.title !== '' ? page.title : 'No title' %></a>
-                            <div class="info">
-                                <a class="node" href="/go/<%= page.tag %>"><%= page.tag !== '' ? page.tag : 'None' %></a>
-                                &nbsp;•&nbsp;
-                                <strong><a href="/member/<%= page.username %>" class="username"><%= page.username %></a></strong>
-                                &nbsp;•&nbsp;
-                                <%= page.post_time %>
-        <!--                        Lastly replied by-->
-        <!--                        <strong><a href="" class="username">JustSong</a></strong>-->
+        <div class="middle-col">
+            <div class="main-content">
+                <div class="main-tabs">
+                    <a href="" class="tab focus">技术</a>
+                    <a href="" class="tab">创意</a>
+                    <a href="" class="tab">好玩</a>
+                    <a href="" class="tab">交易</a>
+                    <a href="" class="tab">问与答</a>
+                    <a href="" class="tab">最热</a>
+                    <a href="" class="tab">全部</a>
+                    <a href="" class="tab">关注</a>
+                </div>
+                <div class="secondary-tabs">
+                    <a href="">C++</a>
+                    <a href="">Java</a>
+                    <a href="">Python</a>
+                    <a href="">JavaScript</a>
+                    <a href="">Go</a>
+                </div>
+                <% if(message.length) {%>
+                    <div class="message">
+                        <%= message %>
+                    </div>
+                <% }%>
+                <% if (pages.length){ %>
+                    <% pages.forEach((page)=>{ %>
+                        <div class="item">
+                            <img src="<%= page.user_avatar !== '' ? page.user_avatar : '/static/default_avatar.png' %>" class="avatar" alt="">
+                            <div class="item-content">
+                                <a href="/t/<%= page.id %>" class="title"><%= page.title !== '' ? page.title : 'No title' %></a>
+                                <div class="info">
+                                    <a class="node" href="/go/<%= page.tag %>"><%= page.tag !== '' ? page.tag : 'None' %></a>
+                                    &nbsp;•&nbsp;
+                                    <strong><a href="/member/<%= page.username %>" class="username"><%= page.username %></a></strong>
+                                    &nbsp;•&nbsp;
+                                    <%= page.post_time %>
+                                    <!--                        Lastly replied by-->
+                                    <!--                        <strong><a href="" class="username">JustSong</a></strong>-->
+                                </div>
+                            </div>
+                            <div class="counter">
+                                <a href="/page/<%= page.id %>"><%= page.view %></a>
                             </div>
                         </div>
-                        <div class="counter">
-                            <a href="/page/<%= page.id %>"><%= page.view %></a>
-                        </div>
-                    </div>
-            <% })} %>
-            <div class="paginator">
+                <% })} %>
+                <div class="paginator">
 
+                </div>
             </div>
         </div>
         <div class="right-bar">
