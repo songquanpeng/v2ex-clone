@@ -1,13 +1,15 @@
-
-<footer id="footer">
-    <div class="content has-text-centered">
-        <% let date = new Date(); const year = date.getFullYear();%>
-        <p>
+<div class="footer">
+    <div class="wrapper">
+        <div class="links">
+            <strong><a href="/about" class="dark" target="_self">About</a> &nbsp; <span class="snow">·</span> &nbsp; <a href="/faq" class="dark" target="_self">FAQ</a> &nbsp; <span class="snow">·</span> &nbsp; <a href="/p/7v9TEc53" class="dark" target="_self">API</a> &nbsp; <span class="snow">·</span> &nbsp; <a href="/mission" class="dark" target="_self">Mission</a> &nbsp; <span class="snow">·</span> &nbsp; <a href="/advertise" class="dark" target="_self">Advertise</a> &nbsp; <span class="snow">·</span> &nbsp; <a href="/advertise/2019.html" class="dark" target="_self">Thanks</a> &nbsp; <span class="snow">·</span> &nbsp; <a href="/tools" class="dark" target="_self">Tools</a> &nbsp; <span class="snow">·</span> &nbsp; 4346 Online</strong>
+        </div>
+        <div class="info">
+            <% let date = new Date(); const year = date.getFullYear();%>
             © <%= year%> <a href="//<%= config.domain %>"><%=config.author%></a>.<%- config.extra_footer_text %>
             Powered by <a href="https://github.com/songquanpeng/lightx-cms">Lightx-CMS</a>.
-        </p>
+        </div>
     </div>
-</footer>
+</div>
 
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@latest/build/highlight.min.js"></script>
 <script>

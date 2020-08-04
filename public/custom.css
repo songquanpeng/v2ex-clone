@@ -78,7 +78,14 @@ body {
     background-color: white; /* temp */
     height: 600px;
     margin-left: 20px;
+    margin-right: 4px;
     flex: 0 0 270px;
+}
+
+@media screen and (max-width: 600px) {
+    .right-bar {
+        display: none;
+    }
 }
 
 .main-tabs {
@@ -217,4 +224,37 @@ a.username {
 a.username:hover {
     color: #4d5256;
     text-decoration: underline;
+}
+
+.footer {
+    width: 100%;
+}
+
+.footer a {
+    color: gray;
+    text-decoration: none;
+}
+
+.snow {
+    color: #e2e2e2;
+}
+
+.footer .wrapper {
+    max-width: 1060px;
+    margin: 0 auto;
+    height: 100%;
+    font-size: 14px;
+    line-height: 150%;
+    text-align: left;
+    padding: 10px;
+}
+
+.wrapper .links {
+    margin-top: 16px;
+}
+
+.wrapper .info {
+    color: #ccc;
+    font-size: 12px;
+    margin-top: 16px;
 }
