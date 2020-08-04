@@ -1,12 +1,18 @@
 <div class="footer">
     <div class="wrapper">
         <div class="links">
-            <strong><a href="/about" class="dark" target="_self">About</a> &nbsp; <span class="snow">·</span> &nbsp; <a href="/faq" class="dark" target="_self">FAQ</a> &nbsp; <span class="snow">·</span> &nbsp; <a href="/p/7v9TEc53" class="dark" target="_self">API</a> &nbsp; <span class="snow">·</span> &nbsp; <a href="/mission" class="dark" target="_self">Mission</a> &nbsp; <span class="snow">·</span> &nbsp; <a href="/advertise" class="dark" target="_self">Advertise</a> &nbsp; <span class="snow">·</span> &nbsp; <a href="/advertise/2019.html" class="dark" target="_self">Thanks</a> &nbsp; <span class="snow">·</span> &nbsp; <a href="/tools" class="dark" target="_self">Tools</a> &nbsp; <span class="snow">·</span> &nbsp; 4346 Online</strong>
+            <strong><a href="/about" class="dark" target="_self">About</a> &nbsp; <span class="snow">·</span> &nbsp; <a href="/faq" class="dark" target="_self">FAQ</a> &nbsp; <span class="snow">·</span>  &nbsp; <a href="/tools" class="dark" target="_self">Tools</a> &nbsp; <span class="snow">·</span> &nbsp; 1 Online</strong>
         </div>
         <div class="info">
             <% let date = new Date(); const year = date.getFullYear();%>
             © <%= year%> <a href="//<%= config.domain %>"><%=config.author%></a>.<%- config.extra_footer_text %>
-            <a href="https://github.com/songquanpeng/v2ex">Source Code</a>.
+            Powered by <a href="https://github.com/songquanpeng/v2ex">songquanpeng/v2ex</a>.
+        </div>
+        <div class="info">
+            Memory occupied: <%= (process.memoryUsage().rss / (1024 *1024)).toFixed(2) %> MB
+        </div>
+        <div class="info">
+            <%= config.description %>
         </div>
     </div>
 </div>

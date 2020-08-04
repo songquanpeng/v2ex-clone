@@ -90,8 +90,6 @@ a:hover {
 }
 
 .right-bar {
-    background-color: white; /* temp */
-    height: 600px;
     margin-left: 20px;
     margin-right: 4px;
     flex: 0 0 270px;
@@ -125,7 +123,7 @@ a.tab:hover {
     background-color: #f5f5f5;
 }
 
-a.focus {
+a.focus, a.focus:hover {
     background-color: black;
     color: white;
 }
@@ -437,4 +435,9 @@ form input {
     width: 99%;
     margin-bottom: 6px;
     font-family: helvetica neue,luxi sans,dejavu sans,Tahoma,hiragino sans gb,microsoft yahei,sans-serif;
+}
+
+.panel {
+    background-color: white;
+    height: 270px;
 }

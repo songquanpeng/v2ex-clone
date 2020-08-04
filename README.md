@@ -4,8 +4,8 @@
 - [x] Footer.
 - [x] Topic list.
 - [x] Home page.
-- [ ] Edit page.
-- [ ] Post page.
+- [x] Edit page.
+- [x] Post page.
 
 ## Deployment
 ```shell script

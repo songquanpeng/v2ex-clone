@@ -32,7 +32,7 @@ router.get('/t/:link', function(req, res, next) {
       });
       Page.updateViewCounter(page.id);
     } else {
-      res.render('message', { title: 'Error!', message });
+      res.render('error', { title: 'Error!', message });
     }
   });
 });
