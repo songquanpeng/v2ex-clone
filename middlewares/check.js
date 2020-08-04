@@ -3,10 +3,7 @@ const User = require('../models/user').User;
 module.exports = {
   checkLogin: function checkLogin(req, res, next) {
     if (req.session.user === undefined) {
-      res.json({
-        status: false,
-        message: 'This operation requires login.'
-      });
+      res.redirect('/signin');
     } else {
       next();
     }

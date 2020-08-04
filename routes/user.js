@@ -11,32 +11,25 @@ router.post('/login', function(req, res) {
   if (username) username = username.trim();
   if (password) password = password.trim();
   if (username === '' || password === '') {
-    res.json({ status: false, message: 'Invalid parameter.' });
+    req.flash('message', 'Invalid parameter.');
+    res.redirect('/signin');
     return;
   }
   User.check(username, password, (status, message, user) => {
+    req.flash('message', message);
     if (status) {
       req.session.user = user;
-      res.json({
-        status,
-        message: message,
-        user: user
-      });
+      res.redirect('/');
     } else {
-      res.json({
-        status,
-        message
-      });
+      res.redirect('/signin');
     }
   });
 });
 
 router.get('/logout', function(req, res, next) {
   req.session.user = undefined;
-  res.json({
-    status: true,
-    message: 'Logout successfully.'
-  });
+  req.flash('message', 'Logout successfully.');
+  res.redirect('/');
 });
 
 router.get('/status', checkLogin, function(req, res, next) {
@@ -46,21 +39,19 @@ router.get('/status', checkLogin, function(req, res, next) {
   });
 });
 
-router.put('/', checkPermission, function(req, res) {
+router.post('/', function(req, res) {
   const username = req.body.username;
   const password = req.body.password;
   const display_name = req.body.display_name;
   const email = req.body.email;
   const url = req.body.url;
-  const status = req.body.status;
+  const status = 1;
   const avatar = req.body.avatar;
 
   console.log(req.body);
   if (!username.trim() || !password.trim()) {
-    res.json({
-      status: false,
-      message: 'Invalid parameter: username or password.'
-    });
+    req.flash('message', 'Invalid parameter: username or password.');
+    res.redirect('/');
   } else {
     User.register(
       {
@@ -73,10 +64,12 @@ router.put('/', checkPermission, function(req, res) {
         avatar
       },
       (success, message) => {
-        res.json({
-          status: success,
-          message
-        });
+        req.flash('message', message);
+        if (success) {
+          res.redirect('/signin');
+        } else {
+          res.redirect('/signup');
+        }
       }
     );
   }
@@ -95,7 +88,7 @@ router.get('/:id', checkPermission, (req, res, next) => {
   });
 });
 
-router.post('/', checkPermission, (req, res, next) => {
+router.put('/', checkPermission, (req, res, next) => {
   const id = req.body.id;
   let username = req.body.username;
   let password = req.body.password;

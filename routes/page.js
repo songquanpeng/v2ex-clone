@@ -9,10 +9,9 @@ const convertContent = require('../utils/util').convertContent;
 const Stream = require('stream');
 
 router.post('/search', checkPermission, function(req, res, next) {
-  const type = Number(req.body.type);
   let keyword = req.body.keyword;
   keyword = keyword ? keyword.trim() : '';
-  Page.search(keyword, type, (status, message, pages) => {
+  Page.search(keyword, (status, message, pages) => {
     res.json({
       status,
       message,
@@ -24,10 +23,8 @@ router.post('/search', checkPermission, function(req, res, next) {
 // Add page
 router.post('/', checkLogin, (req, res, next) => {
   req.app.locals.sitemap = undefined;
-  let type = req.body.type;
-  let link = req.body.link;
-  let page_status = req.body.page_status;
-  let comment_status = req.body.comment_status;
+  let page_status = 1;
+  let comment_status = 1;
   let title = req.body.title;
   let content = req.body.content;
   let tag = req.body.tag;
@@ -41,8 +38,6 @@ router.post('/', checkLogin, (req, res, next) => {
   let down_vote = 0;
   let page = {
     user_id,
-    type,
-    link,
     page_status,
     post_time,
     edit_time,
@@ -58,7 +53,12 @@ router.post('/', checkLogin, (req, res, next) => {
   };
   page.converted_content = convertContent(page.type, page.content);
   Page.add(page, (status, message, id) => {
-    res.json({ status, message, id });
+    req.flash('message', message);
+    if (status) {
+      res.redirect('/');
+    } else {
+      res.redirect('/new');
+    }
   });
 });
 
@@ -68,43 +68,10 @@ router.get('/', checkLogin, (req, res, next) => {
   });
 });
 
-router.get('/export/:id', checkLogin, function(req, res, next) {
-  const id = req.params.id;
-  Page.getById(id, (status, message, page) => {
-    if (status) {
-      const filename = page.link + '.md';
-      res.setHeader(
-        'Content-disposition',
-        "attachment; filename*=UTF-8''" + encodeURIComponent(filename)
-      );
-      res.setHeader('Content-type', 'text/md');
-      const fileStream = new Stream.Readable({
-        read(size) {
-          return true;
-        }
-      });
-      fileStream.pipe(res);
-      fileStream.push(page.content);
-      res.end();
-    } else {
-      next();
-    }
-  });
-});
-
-router.get('/:id', checkLogin, (req, res, next) => {
-  const id = req.params.id;
-  Page.getById(id, (status, message, page) => {
-    res.json({ status, message, page });
-  });
-});
-
 // Update page
 router.put('/', checkLogin, (req, res, next) => {
   req.app.locals.sitemap = undefined;
   const id = req.body.id;
-  let type = req.body.type;
-  let link = req.body.link;
   let page_status = req.body.page_status;
   let comment_status = req.body.comment_status;
   let title = req.body.title;
@@ -115,8 +82,6 @@ router.put('/', checkLogin, (req, res, next) => {
   let edit_time = getDate();
 
   let page = {
-    type,
-    link,
     page_status,
     edit_time,
     comment_status,

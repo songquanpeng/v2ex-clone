@@ -153,6 +153,7 @@ a.focus {
 img.avatar {
     border-radius: 4px;
     flex: 0 0 48px;
+    height: 48px;
 }
 
 .item-content {
@@ -257,4 +258,73 @@ a.username:hover {
     color: #ccc;
     font-size: 12px;
     margin-top: 16px;
+}
+
+.button {
+    background-color: #fff;
+    color: #333;
+    text-shadow: 0 1px 0 #fff;
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 1px 0 rgba(66,66,77,.1);
+    background-image: url(/static/bg_blended_light.png);
+    padding: 4px 8px;
+    border: 1px solid rgba(80,80,90,.2);
+    border-bottom-color: rgba(80,80,90,.35);
+    border-radius: 3px;
+    font-size: 14px;
+    outline: 0;
+    cursor: pointer;
+}
+
+.input {
+    border-radius: 3px;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    width: 320px;
+    font-family: helvetica neue,luxi sans,dejavu sans,Tahoma,hiragino sans gb,microsoft yahei,sans-serif;
+    box-sizing: border-box;
+}
+
+.main-content form {
+    margin: 8px 8px;
+}
+
+form input {
+    margin-bottom: 8px;
+}
+
+.message {
+    padding: 10px;
+    font-size: 14px;
+    line-height: 120%;
+    text-align: left;
+    background-color: #f3faff;
+    border-left: 5px solid #c7e8ff;
+    border-bottom: 1px solid #e2e2e2;
+    color: #333;
+    cursor: pointer;
+}
+
+.cell {
+    padding: 10px;
+    font-size: 14px;
+    line-height: 150%;
+    text-align: left;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.full-input {
+    width: 100%;
+    border: none;
+    resize: none;
+    background-color: #f9f9f9;
+    outline: 0;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 10px;
+    font-family: helvetica neue,hiragino sans gb,microsoft yahei,sans-serif;
+    margin: 0;
+    box-sizing: border-box;
 }

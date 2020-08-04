@@ -12,8 +12,6 @@ class Page {
       .select([
         'pages.id as page_id',
         'pages.user_id as author_id',
-        'type',
-        'link',
         'page_status',
         'comment_status',
         'post_time',
@@ -38,20 +36,11 @@ class Page {
       });
   }
 
-  search(keyword, type, callback) {
-    let types = [];
-    if (type === undefined || type === -1 || type === '') {
-      types = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-    } else {
-      types.push(type);
-    }
-
+  search(keyword, callback) {
     db('pages')
       .select([
         'pages.id as page_id',
         'pages.user_id as author_id',
-        'type',
-        'link',
         'page_status',
         'comment_status',
         'post_time',
@@ -66,11 +55,9 @@ class Page {
         'users.display_name as author'
       ])
       .innerJoin('users', 'users.id', 'pages.user_id')
-      .whereIn('type', types)
       .andWhere(builder => {
         builder
-          .whereRaw('LOWER(link) LIKE ?', `%${keyword.toLowerCase()}%`)
-          .orWhereRaw('LOWER(title) LIKE ?', `%${keyword.toLowerCase()}%`)
+          .whereRaw('LOWER(title) LIKE ?', `%${keyword.toLowerCase()}%`)
           .orWhereRaw('LOWER(tag) LIKE ?', `%${keyword.toLowerCase()}%`)
           .orWhereRaw('LOWER(username) LIKE ?', `%${keyword.toLowerCase()}%`)
           .orWhereRaw('LOWER(author) LIKE ?', `%${keyword.toLowerCase()}%`)
@@ -93,8 +80,6 @@ class Page {
       .select([
         'pages.id as id',
         'pages.user_id as author_id',
-        'type',
-        'link',
         'page_status',
         'post_time',
         'edit_time',
@@ -106,7 +91,7 @@ class Page {
         'description',
         'view',
         'users.username as username',
-        'users.display_name as author'
+        'users.avatar as user_avatar'
       ])
       .innerJoin('users', 'users.id', 'pages.user_id')
       .where('page_status', 1)
@@ -154,7 +139,7 @@ class Page {
     let currentIndex = 0;
     let result = this.pages.find((page, index) => {
       currentIndex = index;
-      return page.link === link;
+      return page.id === link;
     });
     if (result === undefined) {
       callback(false, `No page has link "${link}".`, undefined, undefined);
@@ -166,11 +151,11 @@ class Page {
       let links = {
         prev: {
           title: this.pages[prevIndex].title,
-          link: this.pages[prevIndex].link
+          link: this.pages[prevIndex].id
         },
         next: {
           title: this.pages[nextIndex].title,
-          link: this.pages[nextIndex].link
+          link: this.pages[nextIndex].id
         }
       };
       callback(true, '', result, links);

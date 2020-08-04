@@ -1,9 +1,9 @@
 # V2ex
 ## TODO List
 - [x] Navigation bar.
-- [ ] Footer.
+- [x] Footer.
 - [x] Topic list.
-- [ ] Home page.
+- [x] Home page.
 - [ ] Edit page.
 - [ ] Post page.
 

@@ -21,24 +21,32 @@
                 <a href="">JavaScript</a>
                 <a href="">Go</a>
             </div>
-            <div class="item">
-                <img src="https://cdn.v2ex.com/gravatar/74d75dae2b7e9f46229252a8315fe280?s=48&amp;d=retro" class="avatar" alt="">
-                <div class="item-content">
-                    <a href="" class="title">标题</a>
-                    <div class="info">
-                        <a class="node" href="">程序员</a>
-                        &nbsp;•&nbsp;
-                        <strong><a href="" class="username">JustSong</a></strong>
-                        &nbsp;•&nbsp;
-                        2020-08-02 08:55:35
-                        Lastly replied by
-                        <strong><a href="" class="username">JustSong</a></strong>
-                    </div>
-                </div>
-                <div class="counter">
-                    <a href="">6</a>
-                </div>
+            <% if(message.length) {%>
+            <div class="message">
+                <%= message %>
             </div>
+            <% }%>
+            <% if (pages.length){ %>
+                <% pages.forEach((page)=>{ %>
+                    <div class="item">
+                        <img src="<%= page.user_avatar !== '' ? page.user_avatar : '/static/default_avatar.png' %>" class="avatar" alt="">
+                        <div class="item-content">
+                            <a href="/t/<%= page.id %>" class="title"><%= page.title !== '' ? page.title : 'No title' %></a>
+                            <div class="info">
+                                <a class="node" href="/go/<%= page.tag %>"><%= page.tag !== '' ? page.tag : 'None' %></a>
+                                &nbsp;•&nbsp;
+                                <strong><a href="/member/<%= page.username %>" class="username"><%= page.username %></a></strong>
+                                &nbsp;•&nbsp;
+                                <%= page.post_time %>
+        <!--                        Lastly replied by-->
+        <!--                        <strong><a href="" class="username">JustSong</a></strong>-->
+                            </div>
+                        </div>
+                        <div class="counter">
+                            <a href="/page/<%= page.id %>"><%= page.view %></a>
+                        </div>
+                    </div>
+            <% })} %>
             <div class="paginator">
 
             </div>

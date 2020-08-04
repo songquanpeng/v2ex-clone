@@ -56,12 +56,12 @@ app.use(
   })
 );
 
-app.use(flash());
 app.use(
   serveStatic(path.join(__dirname, 'public'), {
     maxAge: '600000'
   })
 );
+app.use(flash());
 
 app.use('*', (req, res, next) => {
   if (req.session.user !== undefined) {
@@ -80,7 +80,7 @@ app.use('/api/file', fileRouter);
 
 app.use(function(req, res, next) {
   if (!res.headersSent) {
-    res.render('message', {
+    res.render('error', {
       title: ':{404 Not Found}',
       message: 'The page you requested does not exist, I am sorry for that.'
     });
@@ -91,7 +91,7 @@ app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   console.error(err.message);
   if (!res.headersSent) {
-    res.json({ status: false, message: err.message });
+    res.render('error');
   }
 });
 

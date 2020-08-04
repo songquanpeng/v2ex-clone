@@ -1,0 +1,14 @@
+<%- include('./partials/header') %>
+<%- include('./partials/nav')%>
+
+<div class="main">
+    <div class="wrapper">
+        <% if(message) { %>
+            <div>
+                <%= message %>
+            </div>
+        <% }%>
+    </div>
+</div>
+
+<%- include('./partials/footer') %>

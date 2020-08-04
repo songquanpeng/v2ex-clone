@@ -1,0 +1,47 @@
+<%- include('./partials/header') %>
+<%- include('./partials/nav')%>
+
+<div class="main">
+    <div class="wrapper">
+        <div class="main-content">
+            <form method="post" action="/api/page/" style="margin: 0;">
+                <div class="cell">Title</div>
+                <div class="cell" style="padding: 0">
+                    <input type="text" name="title" required class="full-input" placeholder="Please input your post's title here.">
+                </div>
+                <div class="cell">Content</div>
+                <textarea id="editor" name="content" required></textarea>
+                <script>
+                  const editor = new SimpleMDE({
+                    element: document.getElementById("editor"),
+                    forceSync: true,
+                    autofocus: true,
+                    autosave: {
+                      enabled: true,
+                      uniqueId: "main-editor",
+                      delay: 10000
+                    },
+                    toolbar: false,
+                    status: false,
+                    spellChecker: false,
+                  });
+
+                  function togglePreview() {
+                    editor.togglePreview();
+                  }
+                </script>
+                <div class="cell">Node</div>
+                <div class="cell" style="padding: 0">
+                    <input type="text" name="tag" required class="full-input" placeholder="Please input your post's node here.">
+                </div>
+                <div class="cell">
+                    <button type="button" class="button" onclick="togglePreview()">Preview</button>
+                    <input type="submit" class="button" style="float: right" value="Post">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<%- include('./partials/footer') %>

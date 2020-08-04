@@ -21,8 +21,6 @@ exports.up = function(knex, Promise) {
         .inTable('users')
         .notNullable()
         .onDelete('cascade');
-      table.integer('type').notNullable();
-      table.string('link').notNullable();
       table.integer('page_status').notNullable();
       table.text('post_time').notNullable();
       table.text('edit_time');

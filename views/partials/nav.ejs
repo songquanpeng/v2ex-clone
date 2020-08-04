@@ -3,10 +3,15 @@
         <div class="container">
             <div class="logo"><a href="/">JustSong</a></div>
             <div class="others">
-                <a href="">Home</a>
+                <% if(loggedin) { %>
+                <a href="/new">Compose</a>
                 <a href="">Me</a>
-                <a href="">Settings</a>
-                <a href="">Sign Out</a>
+                <a href="/settings">Settings</a>
+                <a href="/api/user/logout">Sign Out</a>
+                <% } else { %>
+                <a href="/signup">Sign Up</a>
+                <a href="/signin">Sign In</a>
+                <% }%>
             </div>
         </div>
     </div>

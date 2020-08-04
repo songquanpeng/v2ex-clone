@@ -1,0 +1,27 @@
+<%- include('./partials/header') %>
+<%- include('./partials/nav')%>
+
+<div class="main">
+    <div class="wrapper">
+        <div class="main-content">
+            <% if(message.length) {%>
+                <div class="message">
+                    <%= message %>
+                </div>
+            <% }%>
+            <form method="post" action="/api/user/login">
+                <label for="username-input">Username</label>
+                <br>
+                <input type="text" id="username-input" class="input" name="username" autofocus>
+                <br>
+                <label for="password-input">Password</label>
+                <br>
+                <input type="password" id="password-input" class="input" name="password">
+                <br>
+                <input type="submit" class="button" value="Sign In">
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('./partials/footer') %>

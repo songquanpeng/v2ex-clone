@@ -8,7 +8,7 @@ exports.up = function(knex) {
       status: 100,
       email: 'admin@domain.com',
       url: 'https://domain.com',
-      avatar: '/favicon.ico'
+      avatar: ''
     }
   ]);
 };

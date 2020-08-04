@@ -3,21 +3,24 @@ module.exports = {
     client: 'sqlite3',
     connection: {
       filename: './data.db'
-    }
+    },
+    useNullAsDefault: true
   },
 
   staging: {
     client: 'sqlite3',
     connection: {
       filename: './data.db'
-    }
+    },
+    useNullAsDefault: true
   },
 
   production: {
     client: 'sqlite3',
     connection: {
       filename: './data.db'
-    }
+    },
+    useNullAsDefault: true
   }
 };
 

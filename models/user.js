@@ -12,7 +12,7 @@ class User {
         } else {
           callback(true, '', users);
         }
-      });
+      }).then();
   }
 
   static getById(id, callback) {
@@ -25,7 +25,20 @@ class User {
         } else {
           callback(true, '', data[0]);
         }
-      });
+      }).then();
+  }
+
+  static getByUsername(username, callback) {
+    db('users')
+      .where('username', username)
+      .asCallback((error, data) => {
+        if (error) {
+          console.error(error.message);
+          callback(false, error.message, undefined);
+        } else {
+          callback(true, '', data[0]);
+        }
+      }).then();
   }
 
   static updateById(id, user, callback) {
