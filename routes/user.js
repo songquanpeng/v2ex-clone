@@ -64,10 +64,11 @@ router.post('/', function(req, res) {
         avatar
       },
       (success, message) => {
-        req.flash('message', message);
         if (success) {
+          req.flash('message', 'Registered successfully, please sign in!');
           res.redirect('/signin');
         } else {
+          req.flash('message', message);
           res.redirect('/signup');
         }
       }

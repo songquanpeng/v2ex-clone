@@ -1,11 +1,8 @@
 # V2ex
-## TODO List
-- [x] Navigation bar.
-- [x] Footer.
-- [x] Topic list.
-- [x] Home page.
-- [x] Edit page.
-- [x] Post page.
+## Description
+1. V2ex's Node.js implementation.
+2. Try it on [Gitpod](https://gitpod.io/#https://github.com/songquanpeng/v2ex).
+3. Demo: https://vzex.herokuapp.com/ with default username admin and password 123456.
 
 ## Deployment
 ```shell script

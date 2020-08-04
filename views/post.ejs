@@ -34,7 +34,7 @@
                 <% if (comments){ comments.forEach((comment)=>{ %>
                     <div class="cell" style="padding: 0">
                         <div class="reply-item">
-                            <img src="<%= comment.user_avatar !== '' ? comment.user_avatar : '/static/default_avatar.png' %>" class="avatar" alt="">
+                            <img src="<%= comment.user_avatar ? comment.user_avatar : '/static/default_avatar.png' %>" class="avatar" alt="">
                             <div class="reply-item-content">
                                 <div class="info" style="margin-top: 0">
                                     <strong><a href="/member/<%= comment.username %>" class="username"><%= comment.username %></a></strong>
