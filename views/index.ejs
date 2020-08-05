@@ -30,7 +30,7 @@
                 <% if (pages.length){ %>
                     <% pages.forEach((page)=>{ %>
                         <div class="item">
-                            <img src="<%= page.user_avatar !== '' ? page.user_avatar : '/static/default_avatar.png' %>" class="avatar" alt="">
+                            <img src="<%= page.user_avatar ? page.user_avatar : '/static/default_avatar.png' %>" class="avatar" alt="">
                             <div class="item-content">
                                 <a href="/t/<%= page.id %>" class="title"><%= page.title !== '' ? page.title : 'No title' %></a>
                                 <div class="info">

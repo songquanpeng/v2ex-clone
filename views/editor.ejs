@@ -4,6 +4,11 @@
 <div class="main">
     <div class="wrapper">
         <div class="main-content">
+            <% if(message.length) {%>
+                <div class="message">
+                    <%= message %>
+                </div>
+            <% }%>
             <form method="post" action="/api/page/" style="margin: 0;">
                 <div class="cell">Title</div>
                 <div class="cell" style="padding: 0">

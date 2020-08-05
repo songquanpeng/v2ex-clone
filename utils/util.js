@@ -1,7 +1,6 @@
 const lexer = require('marked').lexer;
 const parser = require('marked').parser;
 const sanitizeHtml = require('sanitize-html');
-const PAGE_TYPE = require('../utils/constant').PAGE_TYPE;
 const Option = require('../models/option').Option;
 
 function titleToLink(title) {

@@ -39,6 +39,7 @@ router.get('/status', checkLogin, function(req, res, next) {
   });
 });
 
+// Add new user
 router.post('/', function(req, res) {
   const username = req.body.username;
   const password = req.body.password;
@@ -47,11 +48,15 @@ router.post('/', function(req, res) {
   const url = req.body.url;
   const status = 1;
   const avatar = req.body.avatar;
+  if (username.trim().length > 10) {
+    req.flash('message', 'Invalid parameter: username too long (> 10).');
+    res.redirect('/signin');
+    return;
+  }
 
-  console.log(req.body);
   if (!username.trim() || !password.trim()) {
     req.flash('message', 'Invalid parameter: username or password.');
-    res.redirect('/');
+    res.redirect('/signin');
   } else {
     User.register(
       {
@@ -89,6 +94,7 @@ router.get('/:id', checkPermission, (req, res, next) => {
   });
 });
 
+// Update user info
 router.put('/', checkPermission, (req, res, next) => {
   const id = req.body.id;
   let username = req.body.username;

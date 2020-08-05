@@ -47,7 +47,9 @@ router.get('/member/:username', (req, res, next) => {
 });
 
 router.get('/new', checkLogin, (req, res, next) => {
-  res.render('editor');
+  res.render('editor', {
+    message: req.flash('message')
+  });
 });
 
 router.get('/signin', (req, res, next) => {

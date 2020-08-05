@@ -36,6 +36,14 @@ router.post('/', checkLogin, (req, res, next) => {
   let view = 0;
   let up_vote = 0;
   let down_vote = 0;
+  if (title.trim().length > 100 || tag.trim().length > 15) {
+    req.flash(
+      'message',
+      'Invalid parameters: the length of the title or the node name is too long.'
+    );
+    res.redirect('/new');
+    return;
+  }
   let page = {
     user_id,
     page_status,
@@ -69,7 +77,7 @@ router.get('/', checkLogin, (req, res, next) => {
 });
 
 // Update page
-router.put('/', checkLogin, (req, res, next) => {
+router.put('/', checkPermission, (req, res, next) => {
   req.app.locals.sitemap = undefined;
   const id = req.body.id;
   let page_status = req.body.page_status;
@@ -102,7 +110,7 @@ router.put('/', checkLogin, (req, res, next) => {
   });
 });
 
-router.delete('/:id', checkLogin, (req, res, next) => {
+router.delete('/:id', checkPermission, (req, res, next) => {
   req.app.locals.sitemap = undefined;
   const id = req.params.id;
   Page.delete(id, (status, message) => {
