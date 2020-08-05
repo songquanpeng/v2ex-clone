@@ -87,6 +87,7 @@ a:hover {
     width: 100%;
     background-color: #ffffff;
     height: 100%;
+    margin-bottom: 20px;
 }
 
 .right-bar {
@@ -369,7 +370,6 @@ form input {
     border-radius: 0 0 3px 3px;
     text-align: left;
     background: linear-gradient(to bottom,#eee 0,#ccc 100%);
-    margin-bottom: 20px;
 }
 
 .main-content .bottom a {
