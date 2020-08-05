@@ -4,7 +4,8 @@
 [![Edit with Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/songquanpeng/v2ex)
 ## Description
 1. V2ex's Node.js implementation.
-2. Demo: https://vzex.herokuapp.com/ with default username admin and password 123456.
+2. Demo: https://vzex.herokuapp.com/.
+3. Only for learning purpose. 
 
 ## Deployment
 ```shell script
