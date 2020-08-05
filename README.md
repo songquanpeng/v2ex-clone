@@ -10,7 +10,7 @@
 ## Deployment
 ```shell script
 git clone https://github.com/songquanpeng/v2ex-style-forum.git
-cd v2ex
+cd v2ex-style-forum
 npm install
 npm start
 ```
