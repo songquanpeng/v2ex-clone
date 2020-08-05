@@ -59,7 +59,7 @@ router.get('/signin', (req, res, next) => {
 });
 
 router.get('/signup', (req, res, next) => {
-  res.render('signup', {
+  res.render('register', {
     message: req.flash('message')
   });
 });

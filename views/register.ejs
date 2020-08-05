@@ -1,0 +1,30 @@
+<%- include('./partials/header') %>
+<%- include('./partials/nav')%>
+
+<div class="main">
+  <div class="wrapper">
+    <div class="main-content">
+      <% if(message.length) {%>
+        <div class="message">
+          <%= message %>
+        </div>
+      <% }%>
+      <form method="post" action="/api/user/">
+        <label for="username-input">用户名</label>
+        <br>
+        <input type="text" id="username-input" class="input" name="username" autofocus placeholder="请使用你在 V2ex 上的用户名">
+        <br>
+        <label for="password-input">密码</label>
+        <br>
+        <input type="password" id="password-input" class="input" name="password" placeholder="请不要使用你在其他网站使用过的密码">
+        <br>
+        <input type="submit" class="button" value="注册">
+      </form>
+    </div>
+    <div class="right-bar">
+      <%- include('./partials/panel') %>
+    </div>
+  </div>
+</div>
+
+<%- include('./partials/footer') %>

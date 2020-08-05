@@ -439,5 +439,12 @@ form input {
 
 .panel {
     background-color: white;
-    height: 270px;
+}
+
+span.icon {
+    font-size: x-large;
+}
+
+.panel a:hover {
+    text-decoration: none;
 }
