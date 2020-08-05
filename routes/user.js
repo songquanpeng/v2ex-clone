@@ -4,6 +4,7 @@ const router = express.Router();
 const User = require('../models/user').User;
 const checkLogin = require('../middlewares/check').checkLogin;
 const checkPermission = require('../middlewares/check').checkPermission;
+const axios = require('axios').default;
 
 router.post('/login', function(req, res) {
   let username = req.body.username;
@@ -41,44 +42,52 @@ router.get('/status', checkLogin, function(req, res, next) {
 
 // Add new user
 router.post('/', function(req, res) {
-  const username = req.body.username;
-  const password = req.body.password;
-  const display_name = req.body.display_name;
-  const email = req.body.email;
-  const url = req.body.url;
-  const status = 1;
-  const avatar = req.body.avatar;
-  if (username.trim().length > 10) {
-    req.flash('message', 'Invalid parameter: username too long (> 10).');
+  let username = req.body.username;
+  let password = req.body.password;
+  username = username.trim();
+  password = password.trim();
+  if (!username || !password || username.length > 15) {
+    req.flash('message', 'Invalid parameter: username or password.');
     res.redirect('/signin');
     return;
   }
-
-  if (!username.trim() || !password.trim()) {
-    req.flash('message', 'Invalid parameter: username or password.');
-    res.redirect('/signin');
-  } else {
-    User.register(
-      {
-        username,
-        password,
-        display_name,
-        email,
-        url,
-        status,
-        avatar
-      },
-      (success, message) => {
-        if (success) {
-          req.flash('message', 'Registered successfully, please sign in!');
-          res.redirect('/signin');
-        } else {
-          req.flash('message', message);
-          res.redirect('/signup');
+  let avatar;
+  let url;
+  axios
+    .get(`https://www.v2ex.com/api/members/show.json?username=${username}`)
+    .then(res => {
+      avatar = res.data.avatar_normal;
+      avatar.replace('mini', 'large');
+      url = res.data.website;
+    })
+    .catch(err => {
+      console.error(err);
+    })
+    .finally(() => {
+      const display_name = req.body.display_name;
+      const email = req.body.email;
+      const status = 1;
+      User.register(
+        {
+          username,
+          password,
+          display_name,
+          email,
+          url,
+          status,
+          avatar
+        },
+        (success, message) => {
+          if (success) {
+            req.flash('message', 'Registered successfully, please sign in!');
+            res.redirect('/signin');
+          } else {
+            req.flash('message', message);
+            res.redirect('/signup');
+          }
         }
-      }
-    );
-  }
+      );
+    });
 });
 
 router.get('/', checkPermission, (req, res, next) => {
