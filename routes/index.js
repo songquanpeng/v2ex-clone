@@ -11,10 +11,9 @@ router.get('/', function(req, res, next) {
   let pagination = req.query.p;
   pagination = parseInt(pagination);
   if (!pagination || pagination < 0) pagination = 0;
-  let postNumPerPage = 5;
+  let postNumPerPage = 15;
   let start = pagination * postNumPerPage;
-  let end = start + postNumPerPage;
-  Page.getByRange(start, end, pages => {
+  Page.getByRange(start, postNumPerPage, pages => {
     if (pages.length === 0 && pagination !== 0) {
       res.redirect('/');
       return;
