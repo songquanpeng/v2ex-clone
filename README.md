@@ -1,5 +1,5 @@
 # V2ex
-![stars](https://img.shields.io/github/stars/songquanpeng/v2ex) ![forks](https://img.shields.io/github/forks/songquanpeng/v2ex) ![repo-size](https://img.shields.io/github/repo-size/songquanpeng/v2ex) [![https://vzex.herokuapp.com/](https://img.shields.io/website?url=https%3A%2F%2Fvzex.herokuapp.com%2F)](https://vzex.herokuapp.com/)
+![stars](https://img.shields.io/github/stars/songquanpeng/v2ex-style-forum) ![forks](https://img.shields.io/github/forks/songquanpeng/v2ex-style-forum) ![repo-size](https://img.shields.io/github/repo-size/songquanpeng/v2ex-style-forum) [![https://vzex.herokuapp.com/](https://img.shields.io/website?url=https%3A%2F%2Fvzex.herokuapp.com%2F)](https://vzex.herokuapp.com/)
 
 [![Edit with Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/songquanpeng/v2ex)
 ## Description
@@ -9,7 +9,7 @@
 
 ## Deployment
 ```shell script
-git clone https://github.com/songquanpeng/v2ex.git
+git clone https://github.com/songquanpeng/v2ex-style-forum.git
 cd v2ex
 npm install
 npm start

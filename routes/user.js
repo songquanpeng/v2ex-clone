@@ -51,43 +51,30 @@ router.post('/', function(req, res) {
     res.redirect('/signin');
     return;
   }
-  let avatar;
-  let url;
-  axios
-    .get(`https://www.v2ex.com/api/members/show.json?username=${username}`)
-    .then(res => {
-      avatar = res.data.avatar_normal;
-      avatar = avatar.replace('mini', 'large');
-      url = res.data.website;
-    })
-    .catch(err => {
-      console.error(err);
-    })
-    .finally(() => {
-      const display_name = req.body.display_name;
-      const email = req.body.email;
-      const status = 1;
-      User.register(
-        {
-          username,
-          password,
-          display_name,
-          email,
-          url,
-          status,
-          avatar
-        },
-        (success, message) => {
-          if (success) {
-            req.flash('message', 'Registered successfully, please sign in!');
-            res.redirect('/signin');
-          } else {
-            req.flash('message', message);
-            res.redirect('/signup');
-          }
-        }
-      );
-    });
+  const avatar = req.body.avatar;
+  const display_name = req.body.display_name;
+  const email = req.body.email;
+  const status = 1;
+  User.register(
+    {
+      username,
+      password,
+      display_name,
+      email,
+      url,
+      status,
+      avatar
+    },
+    (success, message) => {
+      if (success) {
+        req.flash('message', 'Registered successfully, please sign in!');
+        res.redirect('/signin');
+      } else {
+        req.flash('message', message);
+        res.redirect('/signup');
+      }
+    }
+  );
 });
 
 router.get('/', checkPermission, (req, res, next) => {
