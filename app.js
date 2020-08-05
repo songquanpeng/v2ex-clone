@@ -18,6 +18,7 @@ const rateLimit = require('express-rate-limit');
 const compression = require('compression');
 const app = express();
 const server = http.createServer(app);
+let io = require('socket.io')(server);
 
 const pageLimiter = rateLimit({
   windowMs: 30 * 1000,
@@ -39,6 +40,7 @@ updateConfig(app.locals.config);
 app.locals.loggedin = false;
 app.locals.isAdmin = false;
 app.locals.sitemap = undefined;
+app.locals.onlineUserNumber = 0;
 
 let port = normalizePort(process.env.PORT || 3000);
 app.set('port', port);
@@ -93,6 +95,13 @@ app.use(function(err, req, res, next) {
   if (!res.headersSent) {
     res.render('error');
   }
+});
+
+io.on('connection', socket => {
+  app.locals.onlineUserNumber++;
+  socket.on('disconnect', () => {
+    app.locals.onlineUserNumber--;
+  });
 });
 
 server.listen(port);

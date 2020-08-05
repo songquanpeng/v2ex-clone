@@ -1,7 +1,7 @@
 <div class="footer">
     <div class="wrapper">
         <div class="links">
-            <strong><a href="/about" class="dark" target="_self">About</a> &nbsp; <span class="snow">·</span> &nbsp; <a href="/faq" class="dark" target="_self">FAQ</a> &nbsp; <span class="snow">·</span>  &nbsp; <a href="/tools" class="dark" target="_self">Tools</a> &nbsp; <span class="snow">·</span> &nbsp; 1 Online</strong>
+            <strong><a href="/about" class="dark" target="_self">About</a> &nbsp; <span class="snow">·</span> &nbsp; <a href="/faq" class="dark" target="_self">FAQ</a> &nbsp; <span class="snow">·</span>  &nbsp; <a href="/tools" class="dark" target="_self">Tools</a> &nbsp; <span class="snow">·</span> &nbsp; <%- onlineUserNumber + 1%> Online</strong>
         </div>
         <div class="info">
             <% let date = new Date(); const year = date.getFullYear();%>
@@ -19,6 +19,7 @@
 
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@latest/build/highlight.min.js"></script>
 <script>
+  let socket = io();
   hljs.initHighlightingOnLoad();
 </script>
 <%- config.extra_footer_code %>
