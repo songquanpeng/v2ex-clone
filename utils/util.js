@@ -38,7 +38,9 @@ function getDate(format) {
 }
 
 function md2html(markdown) {
-  return sanitizeHtml(parser(lexer(markdown)));
+  return sanitizeHtml(parser(lexer(markdown)), {
+    allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img'])
+  });
 }
 
 function updateConfig(config) {
