@@ -61,7 +61,6 @@ router.post('/', function(req, res) {
       password,
       display_name,
       email,
-      url,
       status,
       avatar
     },
