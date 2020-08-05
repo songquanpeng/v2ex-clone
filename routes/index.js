@@ -8,13 +8,21 @@ const checkLogin = require('../middlewares/check').checkLogin;
 const checkPermission = require('../middlewares/check').checkPermission;
 
 router.get('/', function(req, res, next) {
-  let start = 0;
-  let end = 9;
+  let pagination = req.query.p;
+  pagination = parseInt(pagination);
+  if (!pagination || pagination < 0) pagination = 0;
+  let postNumPerPage = 5;
+  let start = pagination * postNumPerPage;
+  let end = start + postNumPerPage;
   Page.getByRange(start, end, pages => {
+    if (pages.length === 0) {
+      res.redirect('/');
+      return;
+    }
     res.render('index', {
       pages: pages,
-      prev: ``,
-      next: `10-19`,
+      prev: `${Math.max(0, pagination - 1)}`,
+      next: `${pagination + 1}`,
       message: req.flash('message')
     });
   });
@@ -60,6 +68,12 @@ router.get('/signin', (req, res, next) => {
 
 router.get('/signup', (req, res, next) => {
   res.render('register', {
+    message: req.flash('message')
+  });
+});
+
+router.get('/admin', checkPermission, (req, res, next) => {
+  res.render('admin', {
     message: req.flash('message')
   });
 });
