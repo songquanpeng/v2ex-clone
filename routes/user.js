@@ -57,7 +57,7 @@ router.post('/', function(req, res) {
     .get(`https://www.v2ex.com/api/members/show.json?username=${username}`)
     .then(res => {
       avatar = res.data.avatar_normal;
-      avatar.replace('mini', 'large');
+      avatar = avatar.replace('mini', 'large');
       url = res.data.website;
     })
     .catch(err => {
