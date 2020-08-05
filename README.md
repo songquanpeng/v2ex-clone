@@ -9,7 +9,6 @@
 git clone https://github.com/songquanpeng/v2ex.git
 cd v2ex
 npm install
-npm run build  # For Windows user, please run `npm run build2` instead
 npm start
 ```
 
