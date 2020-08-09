@@ -10,6 +10,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "antd": "^4.5.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
@@ -38,6 +39,12 @@
       "last 1 safari version"
     ]
   },
+  "prettier": {
+    "singleQuote": true
+  },
   "proxy": "http://localhost:3000",
-  "homepage": "/admin"
+  "homepage": "/admin",
+  "devDependencies": {
+    "eslint": "^7.6.0"
+  }
 }
