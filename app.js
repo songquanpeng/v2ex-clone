@@ -30,6 +30,7 @@ const commentLimiter = rateLimit({
   max: 5
 });
 
+app.use(require('express-status-monitor')());
 app.use(pageLimiter);
 app.use('/api/comment', commentLimiter);
 app.use(compression());
