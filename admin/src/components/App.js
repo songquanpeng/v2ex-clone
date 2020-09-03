@@ -1,5 +1,16 @@
 import React from 'react';
-import { Layout, Menu } from 'antd';
+import {
+  Layout,
+  Menu,
+  Avatar,
+  Dropdown,
+  Space,
+  Row,
+  Col,
+  Button,
+  Upload,
+  Popconfirm,
+} from 'antd';
 
 import {
   MenuUnfoldOutlined,
@@ -8,9 +19,7 @@ import {
   VideoCameraOutlined,
   UploadOutlined,
   AppstoreOutlined,
-  PieChartOutlined,
-  DesktopOutlined,
-  ContainerOutlined,
+  DownOutlined,
   MailOutlined,
 } from '@ant-design/icons';
 
@@ -34,7 +43,7 @@ class App extends React.Component {
     return (
       <Layout style={{ height: '100%' }}>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-          <div className="logo" />
+          <div className="logo">System Admin</div>
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
             <Menu.Item key="1" icon={<UserOutlined />}>
               nav 1
@@ -74,6 +83,21 @@ class App extends React.Component {
                 onClick: this.toggle,
               }
             )}
+            <Space style={{ float: 'right', marginRight: '16px' }}>
+              <Button type="primary">Button</Button>
+              <Upload>
+                <Button>
+                  <UploadOutlined /> Click to Upload
+                </Button>
+              </Upload>
+              <Popconfirm
+                title="Are you sure delete this task?"
+                okText="Yes"
+                cancelText="No"
+              >
+                <Button>Confirm</Button>
+              </Popconfirm>
+            </Space>
           </Header>
           <Content
             className="site-layout-background"
