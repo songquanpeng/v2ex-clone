@@ -3,15 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
+    "@ant-design/icons": "latest",
     "antd": "^4.6.2",
+    "axios": "^0.20.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3",
-    "@ant-design/icons": "latest"
+    "react-scripts": "3.4.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -38,7 +36,8 @@
     ]
   },
   "devDependencies": {
-    "prettier": "^2.1.1"
+    "prettier": "^2.1.1",
+    "source-map-explorer": "^2.5.0"
   },
   "prettier": {
     "singleQuote": true

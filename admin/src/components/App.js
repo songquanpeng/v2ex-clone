@@ -35,6 +35,8 @@ import Dashboard from './Dashboard';
 import Settings from './Settings';
 import Users from './Users';
 import Files from './Files';
+import Comments from './Comments';
+import Posts from './Posts';
 
 import './App.css';
 
@@ -139,6 +141,8 @@ class App extends React.Component {
               <Route path="/users" exact component={Users} />
               <Route path="/settings" exact component={Settings} />
               <Route path="/files" exact component={Files} />
+              <Route path="/comments" exact component={Comments} />
+              <Route path="/posts" exact component={Posts} />
             </Switch>
           </Content>
         </Layout>
