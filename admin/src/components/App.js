@@ -10,17 +10,21 @@ import {
   Button,
   Upload,
   Popconfirm,
+  Divider,
+  message,
 } from 'antd';
 
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
   UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-  AppstoreOutlined,
-  DownOutlined,
-  MailOutlined,
+  EditOutlined,
+  DashboardOutlined,
+  FileTextOutlined,
+  CommentOutlined,
+  CloudUploadOutlined,
+  SettingOutlined,
+  LogoutOutlined,
 } from '@ant-design/icons';
 
 import './App.css';
@@ -40,38 +44,50 @@ class App extends React.Component {
   };
 
   render() {
+    const menu = (
+      <Menu>
+        <Menu.Item key="1" icon={<UserOutlined />}>
+          My Account
+        </Menu.Item>
+        <Menu.Item key="2" icon={<SettingOutlined />}>
+          My Setting
+        </Menu.Item>
+        <Menu.Divider />
+        <Menu.Item key="3" icon={<LogoutOutlined />}>
+          Logout
+        </Menu.Item>
+      </Menu>
+    );
+
     return (
       <Layout style={{ height: '100%' }}>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-          <div className="logo">System Admin</div>
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-            <Menu.Item key="1" icon={<UserOutlined />}>
-              nav 1
+          <div className="logo">
+            <h1>System Admin</h1>
+          </div>
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={['0']}>
+            <Menu.Item key="0" icon={<DashboardOutlined />}>
+              Dashboard
             </Menu.Item>
-            <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-              nav 2
-            </Menu.Item>
-            <Menu.Item key="3" icon={<UploadOutlined />}>
-              nav 3
-            </Menu.Item>
-            <SubMenu key="sub1" icon={<MailOutlined />} title="Navigation One">
-              <Menu.Item key="5">Option 5</Menu.Item>
-              <Menu.Item key="6">Option 6</Menu.Item>
-              <Menu.Item key="7">Option 7</Menu.Item>
-              <Menu.Item key="8">Option 8</Menu.Item>
+            <SubMenu key="sub0" icon={<EditOutlined />} title="Editor">
+              <Menu.Item key="1">Rich Text Editor</Menu.Item>
+              <Menu.Item key="2">Code Editor</Menu.Item>
             </SubMenu>
-            <SubMenu
-              key="sub2"
-              icon={<AppstoreOutlined />}
-              title="Navigation Two"
-            >
-              <Menu.Item key="9">Option 9</Menu.Item>
-              <Menu.Item key="10">Option 10</Menu.Item>
-              <SubMenu key="sub3" title="Submenu">
-                <Menu.Item key="11">Option 11</Menu.Item>
-                <Menu.Item key="12">Option 12</Menu.Item>
-              </SubMenu>
-            </SubMenu>
+            <Menu.Item key="3" icon={<FileTextOutlined />}>
+              Posts
+            </Menu.Item>
+            <Menu.Item key="4" icon={<CommentOutlined />}>
+              Comments
+            </Menu.Item>
+            <Menu.Item key="5" icon={<CloudUploadOutlined />}>
+              Files
+            </Menu.Item>
+            <Menu.Item key="6" icon={<UserOutlined />}>
+              Users
+            </Menu.Item>
+            <Menu.Item key="7" icon={<SettingOutlined />}>
+              Settings
+            </Menu.Item>
           </Menu>
         </Sider>
         <Layout className="site-layout">
@@ -84,19 +100,11 @@ class App extends React.Component {
               }
             )}
             <Space style={{ float: 'right', marginRight: '16px' }}>
-              <Button type="primary">Button</Button>
-              <Upload>
-                <Button>
-                  <UploadOutlined /> Click to Upload
+              <Dropdown overlay={menu} placement="bottomCenter">
+                <Button type={'text'} icon={<UserOutlined />} size={'large'}>
+                  Admin
                 </Button>
-              </Upload>
-              <Popconfirm
-                title="Are you sure delete this task?"
-                okText="Yes"
-                cancelText="No"
-              >
-                <Button>Confirm</Button>
-              </Popconfirm>
+              </Dropdown>
             </Space>
           </Header>
           <Content
