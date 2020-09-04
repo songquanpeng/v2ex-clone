@@ -27,6 +27,15 @@ import {
   LogoutOutlined,
 } from '@ant-design/icons';
 
+import { Link, Switch, Route } from 'react-router-dom';
+
+import CodeEditor from './CodeEditor';
+import RichTextEditor from './RichTextEditor';
+import Dashboard from './Dashboard';
+import Settings from './Settings';
+import Users from './Users';
+import Files from './Files';
+
 import './App.css';
 
 const { Header, Sider, Content } = Layout;
@@ -67,26 +76,30 @@ class App extends React.Component {
           </div>
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['0']}>
             <Menu.Item key="0" icon={<DashboardOutlined />}>
-              Dashboard
+              <Link to={'/dashboard'}>Dashboard</Link>
             </Menu.Item>
             <SubMenu key="sub0" icon={<EditOutlined />} title="Editor">
-              <Menu.Item key="1">Rich Text Editor</Menu.Item>
-              <Menu.Item key="2">Code Editor</Menu.Item>
+              <Menu.Item key="1">
+                <Link to={'/rich-text-editor'}>Rich Text Editor</Link>
+              </Menu.Item>
+              <Menu.Item key="2">
+                <Link to={'/code-editor'}>Code Editor</Link>
+              </Menu.Item>
             </SubMenu>
             <Menu.Item key="3" icon={<FileTextOutlined />}>
-              Posts
+              <Link to={'/posts'}>Posts</Link>
             </Menu.Item>
             <Menu.Item key="4" icon={<CommentOutlined />}>
-              Comments
+              <Link to={'/comments'}>Comments</Link>
             </Menu.Item>
             <Menu.Item key="5" icon={<CloudUploadOutlined />}>
-              Files
+              <Link to={'/files'}>Files</Link>
             </Menu.Item>
             <Menu.Item key="6" icon={<UserOutlined />}>
-              Users
+              <Link to={'/users'}>Users</Link>
             </Menu.Item>
             <Menu.Item key="7" icon={<SettingOutlined />}>
-              Settings
+              <Link to={'/settings'}>Settings</Link>
             </Menu.Item>
           </Menu>
         </Sider>
@@ -115,7 +128,18 @@ class App extends React.Component {
               minHeight: 280,
             }}
           >
-            Content
+            <Switch>
+              <Route path="/code-editor" exact component={CodeEditor} />
+              <Route
+                path="/rich-text-editor"
+                exact
+                component={RichTextEditor}
+              />
+              <Route path="/dashboard" exact component={Dashboard} />
+              <Route path="/users" exact component={Users} />
+              <Route path="/settings" exact component={Settings} />
+              <Route path="/files" exact component={Files} />
+            </Switch>
           </Content>
         </Layout>
       </Layout>
