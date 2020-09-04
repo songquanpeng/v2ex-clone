@@ -17,7 +17,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "analyze": "source-map-explorer build/static/js/*",
+    "update": "npm install && (npm run build; rm -rf ../public/admin); mv ./build ../public && mv ../public/build ../public/admin",
+    "update2": "npm install && npm run build && rmdir /Q /S ..\\public\\admin & mkdir ..\\public\\admin && Xcopy /E /I /Q .\\build ..\\public\\admin"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -36,5 +39,10 @@
   },
   "devDependencies": {
     "prettier": "^2.1.1"
-  }
+  },
+  "prettier": {
+    "singleQuote": true
+  },
+  "proxy": "http://localhost:3000",
+  "homepage": "/admin"
 }
