@@ -27,7 +27,7 @@ import {
   LogoutOutlined,
 } from '@ant-design/icons';
 
-import { Link, Switch, Route } from 'react-router-dom';
+import { Link, Switch, Route } from 'react-routers-dom';
 
 import CodeEditor from './CodeEditor';
 import RichTextEditor from './RichTextEditor';
