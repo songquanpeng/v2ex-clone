@@ -1,3 +1,5 @@
+// Credit: https://segmentfault.com/a/1190000013297705
+
 package models
 
 import (

@@ -1,16 +1,16 @@
 package error
 
-var MsgFlags = map[int]string {
-	SUCCESS : "ok",
-	ERROR : "fail",
-	INVALID_PARAMS : "请求参数错误",
-	ERROR_EXIST_TAG : "已存在该标签名称",
-	ERROR_NOT_EXIST_TAG : "该标签不存在",
-	ERROR_NOT_EXIST_ARTICLE : "该文章不存在",
-	ERROR_AUTH_CHECK_TOKEN_FAIL : "Token鉴权失败",
-	ERROR_AUTH_CHECK_TOKEN_TIMEOUT : "Token已超时",
-	ERROR_AUTH_TOKEN : "Token生成失败",
-	ERROR_AUTH : "Token错误",
+var MsgFlags = map[int]string{
+	SUCCESS:                        "ok",
+	ERROR:                          "fail",
+	INVALID_PARAMS:                 "invalid parameters",
+	ERROR_EXIST_TAG:                "such tag name already exists",
+	ERROR_NOT_EXIST_TAG:            "no such tag exists",
+	ERROR_NOT_EXIST_POST:           "no such post exists",
+	ERROR_AUTH_CHECK_TOKEN_FAIL:    "fail to check token",
+	ERROR_AUTH_CHECK_TOKEN_TIMEOUT: "token is outdated",
+	ERROR_AUTH_TOKEN:               "fail to generate token",
+	ERROR_AUTH:                     "something went wrong with token",
 }
 
 func GetMsg(code int) string {
